@@ -1,5 +1,5 @@
 CFLAGS += -Wall -g -O0 -ansi
-CC = musl-gcc
+CC = gcc
 
 SRC = $(wildcard *.c */*.c */*/*.c)
 
