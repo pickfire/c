@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <string.h>
 
-// forward declarations
+/* forward declarations */
 void print_letters(char arg[]);
 
 void print_arguments(int argc, char *argv[])

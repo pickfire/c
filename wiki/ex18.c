@@ -15,8 +15,8 @@ void die(const char *message)
 	exit(1);
 }
 
-// A typedef creates a fake type, in this
-// case for a function pointer
+/* A typedef creates a fake type, in this
+ * case for a function pointer */
 typedef int (*compare_cb)(int a, int b);
 
 /**
