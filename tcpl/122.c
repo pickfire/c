@@ -8,28 +8,27 @@
 
 int isblank(int c)
 {
-	return c == ' ' || c == '\t';
+	return c == ' ' || c == '\t' || c == '\n';
 }
 
 int main()
 {
-	int i, ww, w, xx, x; /* i: count, ww: width, xx: x pos, XX: old X */
+	int i, w, xx, x; /* i: count, w: width, x: x pos, XX: old X */
 	char s[1000];
 
-	for (ww = w = xx = x = 0; (s[x] = getchar()) != EOF; x++) {
+	for (w = xx = x = 0; (s[x] = getchar()) != EOF; x++) {
 		w += (s[x] == '\t') ? TS - (x-1) % TS : 1;
 		if (!isblank(s[x-1]) && isblank(s[x])) {
-			if (w >= LB) { /* TODO: can be refractored */
-				for (s[xx++] = '\n', i = 0; i < xx; i++)
-					putchar(s[i]);
-				for (; isblank(s[xx]); xx++);
-				for (i = x, w = x = 0; xx + x < i; x++, w++)
-					s[x] = s[xx+x];
+			if (w >= LB) {
+				for (i = x; isblank(s[xx]); xx++);
+				for (s[xx-1] = '\n', xx = x - xx + 1, w = x = 0; xx > 0;)
+					s[x++] = s[i - xx--], w++;
 			}
-			xx = x, ww = w;
-		} else if (s[x] == '\n')
-			for (i = x, xx = w = ww = 0; x >= 0; x--)
-				putchar(s[i-x]);
+			while (xx < x)
+				putchar(s[xx++]);
+			if (s[xx] == '\n')
+				putchar('\n'), w = xx = x = -1;
+		}
 	}
 
 	return 0;

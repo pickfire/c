@@ -1,5 +1,5 @@
-CFLAGS += -Wall -g -O0 -ansi
-CC = gcc
+CFLAGS = -Wall -Wextra -g -O0 -ansi
+CC    ?= gcc
 
 SRC = $(wildcard *.c */*.c */*/*.c)
 
@@ -10,3 +10,4 @@ clean:
 
 %: %.c
 	$(CC) $< -o $@ $(CFLAGS)
+	@setfattr -n user.pax.flags -v "emr" $@
